@@ -1,0 +1,276 @@
+/* =====================================================================
+   TEMA pa-it - LAYOUT HOME (stile Bootstrap Italia)
+   Caricato solo da var/themes/pa-it/view/main.tpl
+   Usa le variabili --bi-* definite in fondo a main.css
+   ===================================================================== */
+
+body { padding-top: 0 !important; }
+
+.bi-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* --- SKIP LINK (accessibilità: visibili solo con la tastiera) --- */
+.bi-skiplink {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  background: #fff;
+  color: var(--bi-primary);
+  padding: 8px 16px;
+  font-weight: 600;
+}
+.bi-skiplink:focus {
+  left: 16px;
+  top: 8px;
+  box-shadow: 0 0 0 2px #F90;
+}
+
+/* =====================================================================
+   HEADER
+   ===================================================================== */
+
+/* Azzeriamo posizioni e dimensioni dell'header standard di Lizmap */
+#header.bi-header {
+  position: static;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+#header.bi-header #logo,
+#header.bi-header #title,
+#header.bi-header #headermenu {
+  position: static !important;
+  float: none;
+  top: auto;
+  left: auto;
+  right: auto;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+/* Fascia slim */
+.bi-header-slim {
+  background: var(--bi-primary-dark);
+}
+.bi-header-slim-inner {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+.bi-header-slim a.bi-ente {
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+.bi-header-slim a.bi-ente:hover,
+.bi-header-slim a.bi-ente:focus {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Fascia centrale */
+.bi-header-center {
+  background: var(--bi-primary);
+  padding: 24px 0;
+}
+.bi-header-center-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.bi-brand,
+.bi-brand:hover,
+.bi-brand:focus {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  text-decoration: none;
+}
+#header.bi-header #logo {
+  width: 80px !important;
+  height: 80px !important;
+  flex: 0 0 80px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#header.bi-header #title h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+}
+#header.bi-header #title h2 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 4px 0 0;
+  color: #fff;
+  font-weight: 400;
+}
+
+/* Menu utente (Login / utente collegato) */
+#header.bi-header #headermenu .navbar-inner {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  min-height: 0;
+  padding: 0;
+}
+#header.bi-header .navbar .nav {
+  margin: 0;
+}
+#header.bi-header .navbar .nav > li > a {
+  color: #fff;
+  text-shadow: none;
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+#header.bi-header .navbar .nav > li > a:hover,
+#header.bi-header .navbar .nav > li > a:focus,
+#header.bi-header .navbar .nav > li.open > a,
+#header.bi-header .navbar .nav li.dropdown.open > .dropdown-toggle {
+  background: var(--bi-primary-dark);
+  color: #fff;
+}
+#header.bi-header .dropdown-menu {
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, .15);
+}
+#header.bi-header .dropdown-menu > li > a:hover,
+#header.bi-header .dropdown-menu > li > a:focus {
+  background: var(--bi-primary-light);
+  color: var(--bi-primary);
+}
+
+/* =====================================================================
+   CONTENUTO
+   ===================================================================== */
+#content {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+.bi-footer {
+  background: #004080;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.bi-footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+.bi-footer a:hover,
+.bi-footer a:focus {
+  color: #fff;
+  text-decoration: none;
+}
+.bi-footer-main {
+  padding: 40px 0 32px;
+}
+.bi-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, .3);
+  font-size: 24px;
+  font-weight: 700;
+}
+.bi-footer-brand img {
+  max-height: 56px;
+  width: auto;
+}
+.bi-footer-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  padding-top: 24px;
+}
+.bi-footer-cols h4 {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, .3);
+  color: #fff;
+}
+.bi-footer-cols p {
+  margin: 0;
+}
+.bi-footer-cols ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bi-footer-cols li {
+  margin-bottom: 8px;
+}
+.bi-footer-small {
+  background: #00264D;
+  padding: 16px 0;
+  font-size: 14px;
+}
+.bi-footer-small ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+.bi-footer-small a {
+  text-decoration: none;
+}
+.bi-footer-small a:hover,
+.bi-footer-small a:focus {
+  text-decoration: underline;
+}
+
+/* =====================================================================
+   MOBILE
+   ===================================================================== */
+@media (max-width: 767px) {
+  .bi-header-center {
+    padding: 16px 0;
+  }
+  .bi-header-center-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  #header.bi-header #logo {
+    width: 48px !important;
+    height: 48px !important;
+    flex-basis: 48px;
+  }
+  #header.bi-header #title h1 {
+    font-size: 24px;
+  }
+  #header.bi-header #title h2 {
+    font-size: 14px;
+  }
+  .bi-footer-brand {
+    font-size: 20px;
+  }
+}

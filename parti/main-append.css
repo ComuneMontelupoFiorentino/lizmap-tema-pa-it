@@ -1,0 +1,26 @@
+
+/* =====================================================================
+   BOOTSTRAP ITALIA - BASE (tema pa-it)
+   Aggiunto in fondo a main.css del tema standard da scripts/installa.sh.
+   Ridefinisce le variabili del tema Lizmap con la palette Bootstrap Italia
+   e imposta il font Titillium Web (servito localmente, vedi titillium.css).
+   ===================================================================== */
+:root {
+  --bi-primary: #0066CC;
+  --bi-primary-dark: #004D99;
+  --bi-primary-light: #E5F0FA;
+  --bi-text: #1A1A1A;
+
+  --header-color: var(--bi-primary);
+  --color-background-primary: #ffffff;
+  --color-background-primary-content: #ffffff;
+  --color-text-primary: var(--bi-text);
+  --color-text-primary-content: var(--bi-text);
+  --color-contrasted-elements: var(--bi-primary);
+  --color-contrasted-elements-light: var(--bi-primary-light);
+}
+
+body, input, button, select, textarea,
+h1, h2, h3, h4, h5, h6, .btn, .navbar {
+  font-family: "Titillium Web", Geneva, Tahoma, sans-serif !important;
+}

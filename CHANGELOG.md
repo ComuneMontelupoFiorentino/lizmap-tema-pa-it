@@ -4,6 +4,16 @@ Modifiche al tema pa-it. Per ogni voce, la versione di Lizmap su cui è stata te
 
 ## [Non rilasciato]
 
+### Lizmap 3.9.0 — 2026-10-15 (2)
+
+- **Home, header**: menu utente (Amministrazione, login/utente) spostato nella fascia
+  slim, a destra del nome dell'ente; la fascia centrale contiene solo logo e titolo.
+  Titolo e sottotitolo ora uno sotto l'altro.
+- **Home, ricerca**: la ricerca progetti non è più sovrapposta all'header ma sta nel
+  contenuto, prima delle card, con etichetta visibile (accessibilità) e campo in stile
+  Bootstrap Italia; il pulsante "T" delle parole chiave è a destra del campo.
+- **Mobile**: nome dell'ente troncato con i puntini, menu utente solo con le icone.
+
 ### Lizmap 3.9.0 — 2026-10-15
 
 - **Font**: Titillium Web servito localmente (`titillium.css` + `fonts/`), niente
@@ -22,4 +32,4 @@ Modifiche al tema pa-it. Per ogni voce, la versione di Lizmap su cui è stata te
 Da fare:
 - Sostituire i testi segnaposto `DA PERSONALIZZARE` in `main.tpl`.
 - Logo dell'ente in `css/img/logo.png` e `logo_footer.png`.
-- Barra di ricerca e card dei progetti della home.
+- Card dei progetti della home.

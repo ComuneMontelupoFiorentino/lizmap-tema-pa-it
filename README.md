@@ -5,7 +5,7 @@ l'aspetto del portale cartografico allo stile di
 [Bootstrap Italia](https://italia.github.io/bootstrap-italia/), il kit di design per i
 siti della Pubblica Amministrazione.
 
-Testato su **Lizmap 3.9.0**.
+Testato su **Lizmap 3.9.0**; in esercizio sulla Prosit del Comune di Montelupo Fiorentino (Lizmap 3.9.12).
 
 Il repository contiene **solo le nostre personalizzazioni**: non è un fork di Lizmap.
 Nessun file standard di Lizmap viene modificato; il tema si aggiunge accanto a quello
@@ -16,8 +16,9 @@ standard e si può togliere in qualsiasi momento.
 | Dove | Cosa |
 |---|---|
 | Tutte le pagine (home e mappe) | Font Titillium Web servito dal nostro server, palette blu `#0066CC` |
-| Home | Header a due fasce (ente di appartenenza + logo e titolo), footer istituzionale, skip link per l'accessibilità |
-| Mappe | Solo font e colori: la struttura resta quella standard |
+| Home | Header a due fasce (ente di appartenenza, menu con link esterni e menu utente + logo e titolo), pulsante (i) con le informazioni sul servizio, pulsante "torna su", footer istituzionale fisso in fondo, skip link per l'accessibilità |
+| Accesso | Pagine di login, password dimenticata e creazione account con lo stesso header e footer della home (`master_admin/index_login.tpl`, `bi-login.css`) |
+| Mappe | Font e colori, ritocchi in `map.css` e `view.css`: la struttura resta quella standard |
 
 ## Struttura
 
@@ -61,10 +62,18 @@ template, nell'originale:
 - **Tema attivo**: `theme=pa-it` in `var/config/localconfig.ini.php`, fuori da ogni
   sezione. Senza quella riga, il tema si prova aggiungendo `?theme=pa-it` all'URL.
 
-`main.css` del tema non è salvato nel repository: viene **costruito** a ogni
-installazione come `parti/main-prepend.css` + `main.css` standard della versione
-installata + `parti/main-append.css`. Così le correzioni di 3Liz al tema standard
-arrivano da sole e le nostre regole, essendo in fondo, restano prioritarie.
+**main.css, view.css e map.css** del tema sono salvati **completi** in
+`lizmap/www/themes/pa-it/css/`: sono quelli in esercizio, partiti dal tema standard e poi
+modificati anche al suo interno. `installa.sh` li copia così come sono. Se si toglie
+`css/main.css` dal repository, `installa.sh` torna a costruirlo come
+`parti/main-prepend.css` + `main.css` standard + `parti/main-append.css`.
+Dopo un aggiornamento di Lizmap, `controlla-aggiornamento.sh` segnala se i tre CSS standard
+sono cambiati (gli originali sono in `originali/`): in quel caso vanno riportate a mano le
+correzioni di 3Liz.
+
+I testi e i link della fascia slim e del footer (nome dell'ente, menu Rekla e Opendata,
+contatti) sono quelli del Comune di Montelupo Fiorentino: per un altro ente si cambiano in
+`main.tpl` e `index_login.tpl` (cercare `montelupo`).
 
 ## Installare
 
@@ -111,7 +120,7 @@ modifica fatta a mano sul server viene sovrascritta alla prossima installazione.
 
 | Voglio cambiare | File |
 |---|---|
-| Colori, font, bottoni (ovunque) | `parti/main-append.css` |
+| Colori, font, bottoni (ovunque) | `lizmap/www/themes/pa-it/css/main.css` (in fondo) |
 | Header e footer della home (aspetto) | `lizmap/www/themes/pa-it/css/bi-layout.css` |
 | Header e footer della home (HTML, testi, link) | `lizmap/var/themes/pa-it/view/main.tpl` |
 | Logo | `lizmap/www/themes/pa-it/css/img/logo.png` (e `logo_footer.png`) |
@@ -190,6 +199,14 @@ Bootstrap Italia.
 Il tema standard (`default`) non viene mai toccato: si può sempre vedere con
 `?theme=default`.
 
+## Parte di Prosit
+
+Questo componente fa parte di **[Prosit](https://github.com/ComuneMontelupoFiorentino/prosit)**,
+il Sistema Informativo Territoriale del Comune di Montelupo Fiorentino. Nel repository
+[prosit](https://github.com/ComuneMontelupoFiorentino/prosit) ci sono l'architettura, l'elenco
+di tutti i componenti (topic [`prosit`](https://github.com/search?q=org%3AComuneMontelupoFiorentino+topic%3Aprosit&type=repositories))
+e le versioni che funzionano insieme.
+
 ## Licenze
 
 - Font Titillium Web: SIL Open Font License, vedi
@@ -197,3 +214,5 @@ Il tema standard (`default`) non viene mai toccato: si può sempre vedere con
   `bootstrap-italia` 2.18.3.
 - Il tema standard di Lizmap, da cui `installa.sh` parte, è distribuito con Lizmap
   (licenza MPL 2.0).
+- Icone in `css/svg/`: Bootstrap Italia, licenza BSD-3-Clause (vedi `css/svg/LEGGIMI.txt`).
+- Il tema è rilasciato con licenza **MPL 2.0** (file [LICENSE](LICENSE)), la stessa di Lizmap.

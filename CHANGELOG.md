@@ -4,6 +4,19 @@ Modifiche al tema pa-it. Per ogni voce, la versione di Lizmap su cui è stata te
 
 ## [Non rilasciato]
 
+### Lizmap 3.9.12 — 2026-11-18: allineamento con la versione in esercizio
+
+- **Home, header**: menu personalizzato nella fascia slim (Rekla, Opendata), pulsante (i)
+  con popup "Informazioni sul servizio", pulsante "torna su" (`js/bi-page.js`).
+- **Home, footer**: sempre in fondo alla pagina anche con poco contenuto; loghi corretti su mobile.
+- **Accesso**: login, password dimenticata e creazione account con header e footer della
+  home (`var/themes/pa-it/master_admin/index_login.tpl`, `css/bi-login.css`).
+- **CSS**: `main.css`, `view.css` e `map.css` salvati completi nel repository;
+  `installa.sh` li usa così come sono (prima `main.css` veniva costruito dalle parti).
+- **Icone** Bootstrap Italia in `css/svg/`, nuovo logo in `css/img/logo.png`.
+- **Script**: resi eseguibili (prima `installa.sh` si fermava al controllo dei template).
+- **Licenza**: MPL 2.0.
+
 ### Lizmap 3.9.0 — 2026-10-15 (2)
 
 - **Home, header**: menu utente (Amministrazione, login/utente) spostato nella fascia

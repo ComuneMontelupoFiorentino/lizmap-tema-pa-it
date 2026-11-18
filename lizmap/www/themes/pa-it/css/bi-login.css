@@ -1,0 +1,240 @@
+/* =====================================================================
+   TEMA pa-it - PAGINE DI ACCESSO (login, password dimenticata, account)
+   Caricato solo da var/themes/pa-it/master_admin/index_login.tpl
+   Tutte le regole iniziano con .bi-login-page: non toccano altre pagine.
+   ===================================================================== */
+
+/* admin.css di Lizmap rimpicciolisce tutto il contenuto (font-size: .8em);
+   Bootstrap 2 dà al .container una larghezza fissa che sborda su mobile */
+.bi-login-page #content {
+  width: auto;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5;
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+/* --- Riquadro --- */
+.bi-login-page .bi-login-card {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
+}
+.bi-login-page #auth_login_zone {
+  max-width: none;
+  margin: 0;
+}
+.bi-login-page .bi-login-title {
+  margin: 0 0 24px;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--bi-text);
+}
+
+/* --- Modulo: etichette sopra i campi (non affiancate come in Bootstrap 2) --- */
+.bi-login-page form,
+.bi-login-page fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.bi-login-page .control-group {
+  margin: 0 0 24px;
+}
+.bi-login-page .control-label {
+  float: none;
+  width: auto;
+  padding: 0;
+  margin: 0 0 4px;
+  text-align: left;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--bi-text);
+}
+.bi-login-page .controls {
+  margin-left: 0;
+}
+.bi-login-page .jforms-required-star {
+  color: var(--bi-primary);
+}
+
+/* Campi di testo in stile Bootstrap Italia: solo bordo inferiore */
+.bi-login-page input[type="text"],
+.bi-login-page input[type="password"],
+.bi-login-page input[type="email"] {
+  display: block;
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 18px;
+  color: var(--bi-text);
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid #5D7083;
+  border-radius: 0;
+  box-shadow: none;
+}
+.bi-login-page input[type="text"]:focus,
+.bi-login-page input[type="password"]:focus,
+.bi-login-page input[type="email"]:focus {
+  outline: none;
+  border-bottom-color: var(--bi-primary);
+  box-shadow: 0 0 0 2px #F90;
+}
+/* il giallo dell'autocompletamento del browser */
+.bi-login-page input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px #fff inset;
+  -webkit-text-fill-color: var(--bi-text);
+}
+
+/* Password con il pulsante "occhio" accanto */
+.bi-login-page .input-append {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  margin: 0;
+  font-size: 16px;
+}
+.bi-login-page .input-append input {
+  flex: 1 1 auto;
+  width: auto;
+}
+.bi-login-page .input-append .btn,
+.bi-login-page .input-append .add-on {
+  flex: 0 0 auto;
+  height: 48px;
+  min-width: 48px;
+  margin: 0;
+  padding: 0 12px;
+  border: 0;
+  border-bottom: 1px solid #5D7083;
+  border-radius: 0;
+  background: #fff;
+  color: var(--bi-text);
+  box-shadow: none;
+}
+.bi-login-page .input-append .btn:hover {
+  background: var(--bi-primary-light);
+  color: var(--bi-primary);
+}
+.bi-login-page .input-append .btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #F90;
+}
+
+/* "Ricordami" */
+.bi-login-page input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0 8px 0 0;
+  vertical-align: middle;
+  accent-color: var(--bi-primary);
+}
+.bi-login-page input[type="checkbox"] + label,
+.bi-login-page .controls label.jforms-label {
+  display: inline;
+  margin: 0;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+/* --- Pulsante "Accedi" --- */
+.bi-login-page .form-actions {
+  margin: 32px 0 0;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.bi-login-page .form-actions .btn,
+.bi-login-page .form-actions input[type="submit"] {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 0 24px;
+  border: 2px solid var(--bi-primary);
+  border-radius: 4px;
+  background: var(--bi-primary);
+  background-image: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+.bi-login-page .form-actions .btn:hover,
+.bi-login-page .form-actions input[type="submit"]:hover {
+  background: var(--bi-primary-dark);
+  border-color: var(--bi-primary-dark);
+  color: #fff;
+  filter: none;
+}
+.bi-login-page .form-actions .btn:focus-visible,
+.bi-login-page .form-actions input[type="submit"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px #F90;
+}
+
+/* Link "password dimenticata" / "crea account" */
+.bi-login-page .loginbox-links {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 16px;
+}
+.bi-login-page .loginbox-links a {
+  color: var(--bi-primary);
+  text-decoration: underline;
+}
+
+/* Messaggi di errore (es. password sbagliata) */
+.bi-login-page .jforms-error-list,
+.bi-login-page .alert-error {
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  background: #fdf3f3;
+  background-image: none;
+  border: 0;
+  border-left: 4px solid #CC334D;
+  border-radius: 0;
+  color: #1A1A1A;
+  text-shadow: none;
+  list-style: none;
+}
+
+@media (max-width: 767px) {
+  .bi-login-page #content {
+    padding-top: 24px;
+  }
+  .bi-login-page .bi-login-card {
+    padding: 24px 16px;
+    box-shadow: none;
+  }
+}
+
+/* Nome del portale nell'header (qui non è un h1: l'h1 è il titolo della pagina) */
+.bi-login-page #header.bi-header #title .bi-site-name {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #fff;
+}
+@media (max-width: 767px) {
+  .bi-login-page #header.bi-header #title .bi-site-name {
+    font-size: 24px;
+  }
+}

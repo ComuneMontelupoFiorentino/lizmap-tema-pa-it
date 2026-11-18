@@ -1,0 +1,2 @@
+Icone di Bootstrap Italia (https://github.com/italia/bootstrap-italia),
+Designers Italia, licenza BSD-3-Clause.

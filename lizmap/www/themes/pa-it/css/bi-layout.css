@@ -61,20 +61,24 @@ body { padding-top: 0 !important; }
 /* Fascia slim */
 .bi-header-slim {
   background: var(--bi-primary-dark);
+  position: relative;
+  z-index: 1030; /* i menu a tendina devono stare sopra la fascia centrale */
 }
 .bi-header-slim-inner {
   height: 48px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
-.bi-header-slim a.bi-ente {
+.bi-header-slim a.bi-ente, .bi-custom-menu {
   color: #fff;
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
 }
 .bi-header-slim a.bi-ente:hover,
-.bi-header-slim a.bi-ente:focus {
+.bi-header-slim, .bi-header-slim a.bi-ente:hover, .bi-custom-menu {
   color: #fff;
   text-decoration: underline;
 }
@@ -87,18 +91,30 @@ body { padding-top: 0 !important; }
 .bi-header-center-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: flex-start;
+  gap: 1.5rem;  
+}
+.bi-header-center-inner .bi-info-button {
+  margin-left: 0;           /* annulla un eventuale margin-left: auto */
+  flex-shrink: 0;           /* il cerchio non si schiaccia */
+  align-self: center;       /* centrato verticalmente rispetto al titolo */
+}
+.bi-brand #title {
+  max-width: 34rem;  /* adatta finché il pulsante non è dove lo vuoi */
 }
 .bi-brand,
-.bi-brand:hover,
-.bi-brand:focus {
+.bi-brand:hover {
   display: flex;
   align-items: center;
   gap: 16px;
   color: #fff;
   text-decoration: none;
 }
+
+.bi-brand:focus, a.bi-ente:focus, .dashboard-item:focus, a:focus{
+  outline: 2px solid #f90;
+  outline-offset: 0;
+} 
 #header.bi-header #logo {
   width: 80px !important;
   height: 80px !important;
@@ -107,22 +123,32 @@ body { padding-top: 0 !important; }
   background-position: center;
   background-repeat: no-repeat;
 }
+/* titolo e sottotitolo uno sotto l'altro (lo standard li affianca) */
+#header.bi-header #title h1,
+#header.bi-header #title h2 {
+  display: block;
+  float: none;
+  position: static;
+  color: #fff;
+  text-shadow: none;
+}
 #header.bi-header #title h1 {
   font-size: 32px;
   line-height: 1.2;
   margin: 0;
-  color: #fff;
   font-weight: 700;
 }
 #header.bi-header #title h2 {
   font-size: 16px;
   line-height: 1.4;
   margin: 4px 0 0;
-  color: #fff;
   font-weight: 400;
 }
 
-/* Menu utente (Login / utente collegato) */
+/* Menu utente (Amministrazione, login / utente collegato) nella fascia slim */
+#header.bi-header #headermenu {
+  margin-left: auto;
+}
 #header.bi-header #headermenu .navbar-inner {
   background: none;
   border: 0;
@@ -132,19 +158,31 @@ body { padding-top: 0 !important; }
 }
 #header.bi-header .navbar .nav {
   margin: 0;
+  display: flex;
+  align-items: center;
+}
+#header.bi-header .navbar .nav > li {
+  float: none;
 }
 #header.bi-header .navbar .nav > li > a {
   color: #fff;
   text-shadow: none;
-  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 12px;
   border-radius: 4px;
 }
 #header.bi-header .navbar .nav > li > a:hover,
 #header.bi-header .navbar .nav > li > a:focus,
+#header.bi-header .navbar .nav > li.active > a,
 #header.bi-header .navbar .nav > li.open > a,
 #header.bi-header .navbar .nav li.dropdown.open > .dropdown-toggle {
-  background: var(--bi-primary-dark);
+  background: rgba(255, 255, 255, .15);
   color: #fff;
+}
+#header.bi-header .navbar .nav .dropdown-toggle .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
 }
 #header.bi-header .dropdown-menu {
   border: 0;
@@ -165,11 +203,78 @@ body { padding-top: 0 !important; }
   padding-bottom: 48px;
 }
 
+/* --- Ricerca progetti: nel flusso della pagina, sopra le card ---
+   Lo standard la posiziona in alto sopra l'header: la riportiamo qui. */
+#content #search {
+  position: static !important;
+  top: auto;
+  left: auto;
+  right: auto;
+  float: none;
+  width: auto;
+  max-width: 720px;
+  margin: 0 0 40px;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+#content #search .bi-search-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--bi-text);
+  margin-bottom: 8px;
+}
+#content #search .input-prepend {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  margin: 0;
+  font-size: 16px;
+}
+#content #search #search-project {
+  flex: 1 1 auto;
+  width: auto;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 18px;
+  border: 0;
+  border-bottom: 1px solid #5D7083;
+  border-radius: 0;
+  box-shadow: none;
+  background: #fff;
+}
+#content #search #search-project:focus {
+  outline: none;
+  border-bottom-color: var(--bi-primary);
+  box-shadow: 0 0 0 2px #F90;
+}
+#content #search #toggle-search {
+  order: 2; /* il pulsante parole chiave va a destra del campo */
+  height: 48px;
+  min-width: 48px;
+  margin: 0 0 0 8px;
+  border-radius: 4px;
+  background: var(--bi-primary);
+  border: 2px solid var(--bi-primary);
+  color: #fff;
+  font-weight: 700;
+}
+#content #search #toggle-search:hover,
+#content #search #toggle-search:focus {
+  background: var(--bi-primary-dark);
+  border-color: var(--bi-primary-dark);
+}
+#content #search #search-project-keywords {
+  margin-top: 12px;
+}
+
 /* =====================================================================
    FOOTER
    ===================================================================== */
 .bi-footer {
-  background: #004080;
+  background: #202a2e;
   color: #fff;
   font-size: 16px;
   line-height: 1.5;
@@ -199,6 +304,28 @@ body { padding-top: 0 !important; }
   max-height: 56px;
   width: auto;
 }
+/* logo dell'ente, poi titolo, poi logo Lizmap spinto a destra */
+.bi-footer-logo-ente {
+  flex: 0 0 auto;
+}
+.bi-footer-title {
+  flex: 1 1 auto;
+}
+a.bi-footer-logo-lizmap {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+a.bi-footer-logo-lizmap img {
+  max-height: 40px;
+  opacity: .85;
+}
+a.bi-footer-logo-lizmap:hover img,
+a.bi-footer-logo-lizmap:focus img {
+  opacity: 1;
+}
 .bi-footer-cols {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -227,7 +354,7 @@ body { padding-top: 0 !important; }
   margin-bottom: 8px;
 }
 .bi-footer-small {
-  background: #00264D;
+  background: #0f0f0f;
   padding: 16px 0;
   font-size: 14px;
 }
@@ -251,6 +378,15 @@ body { padding-top: 0 !important; }
    MOBILE
    ===================================================================== */
 @media (max-width: 767px) {
+  .bi-header-slim a.bi-ente {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  #header.bi-header .navbar .nav > li > a .text {
+    display: none; /* su mobile solo le icone del menu */
+  }
   .bi-header-center {
     padding: 16px 0;
   }
@@ -272,5 +408,267 @@ body { padding-top: 0 !important; }
   }
   .bi-footer-brand {
     font-size: 20px;
+    flex-wrap: wrap;
+  }
+}
+
+.liz-repository-title {
+  padding: 50px;
+} 
+
+/* Scompare il menu personalizzato e l'ente su dispositivi mobili (es. sotto i 768px o 980px) */
+@media (max-width: 979px) {
+  .bi-ente,
+  .bi-custom-menu,
+  .bi-custom-nav-collapse {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   TITOLO + PULSANTE INFORMAZIONI
+   ========================================================= */
+
+.bi-title-with-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.bi-title-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.bi-title-text h1,
+.bi-title-text h2 {
+  overflow-wrap: anywhere;
+}
+
+.bi-info-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 2px solid #06c;
+  border-radius: 50%;
+  background: #fff;
+  color: #06c;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bi-info-button:hover,
+.bi-info-button:focus-visible {
+  background: #06c;
+  color: #fff;
+}
+
+.bi-info-button:focus-visible,
+.bi-back-to-top:focus-visible,
+.bi-info-close:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   POPUP INFORMATIVO
+   ========================================================= */
+
+.bi-info-overlay[hidden] {
+  display: none !important;
+}
+
+.bi-info-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.60);
+  overflow-y: auto;
+}
+
+.bi-info-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #fff;
+  color: #17324d;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
+}
+
+.bi-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.bi-info-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.bi-info-close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #17324d;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.bi-info-close:hover {
+  background: #e9f2fa;
+}
+
+.bi-info-body {
+  padding: 20px 24px;
+  line-height: 1.6;
+}
+
+.bi-info-body h3 {
+  margin: 20px 0 8px;
+  font-size: 1.05rem;
+}
+
+.bi-info-body h3:first-child {
+  margin-top: 0;
+}
+
+.bi-info-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  border-top: 1px solid #ddd;
+}
+
+.bi-info-close-action {
+  padding: 10px 20px;
+  border-radius: 4px;
+  background: var(--bi-primary);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.bi-info-close-action:hover {
+  background: var(--bi-primary-dark);
+  color: #fff;
+}
+
+/* =========================================================
+   PULSANTE TORNA SU
+   ========================================================= */
+
+.bi-back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--bi-primary);
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+
+.bi-back-to-top.bi-back-to-top-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.bi-back-to-top:hover {
+  background: var(--bi-primary-dark);
+}
+
+@media (max-width: 767px) {
+  .bi-info-overlay {
+    padding: 12px;
+  }
+
+  .bi-info-dialog {
+    max-height: 90vh;
+  }
+
+  .bi-info-header,
+  .bi-info-body {
+    padding: 16px;
+  }
+
+  .bi-info-footer {
+    padding: 12px 16px;
+  }
+
+  .bi-back-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .bi-title-with-info {
+    gap: 8px;
+  }
+
+  .bi-info-button {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bi-back-to-top {
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  #header.bi-header #title h2 {
+    display: none;
+  }
+  #bi-service-info-trigger {
+    display: none;
   }
 }

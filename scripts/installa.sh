@@ -10,7 +10,7 @@
 #   2. salva una copia del tema pa-it già installato (se esiste)
 #   3. www/themes/pa-it   = copia di www/themes/default della versione
 #                           installata + i nostri file (font, bi-layout.css)
-#                           + main.css costruito così:
+#                           + main.css del repository se presente, altrimenti costruito così:
 #                             parti/main-prepend.css
 #                             www/themes/default/css/main.css  (standard)
 #                             parti/main-append.css
@@ -86,12 +86,15 @@ trap 'rm -rf "$STAGING"' EXIT
 cp -a "$DEFAULT_THEME/." "$STAGING/"
 # i nostri file (font, titillium.css, bi-layout.css, eventuali immagini)
 cp -a "$REPO/lizmap/www/themes/$TEMA/." "$STAGING/"
-# main.css = prepend + main.css standard + append
+# main.css: se il repository contiene il main.css completo (lizmap/www/themes/pa-it/css/main.css)
+# si usa quello, gia' copiato sopra; altrimenti si costruisce: prepend + main.css standard + append
+if [ ! -f "$REPO/lizmap/www/themes/$TEMA/css/main.css" ]; then
 {
   cat "$REPO/parti/main-prepend.css"
   cat "$DEFAULT_THEME/css/main.css"
   cat "$REPO/parti/main-append.css"
 } > "$STAGING/css/main.css"
+fi
 
 rm -rf "$TARGET/www/themes/$TEMA"
 cp -a "$STAGING" "$TARGET/www/themes/$TEMA"

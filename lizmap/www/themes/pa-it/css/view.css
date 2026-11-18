@@ -1,0 +1,26 @@
+.thumbnail {
+  background-color: white;
+}
+
+.liz-project-desc {
+  display: none;
+}
+
+.liz-project:hover {
+  background-color: #f8faff;
+}
+.thumbnail h5 {
+  text-align: left;
+  padding: 15px;
+  color: #3d4a57 !important;
+}
+.liz-repository-project-item .thumbnail {
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15) !important;
+}
+.navbar .navbar-inner .text:hover {
+  text-decoration: underline !important;
+}
+.bi-footer-logo-lizmap {
+  background-color: white;
+  padding: 10px;
+}
